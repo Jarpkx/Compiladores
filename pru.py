@@ -9,23 +9,23 @@ tokens =[ 'ID','NUMERO','PLUS','MINUS','TIMES','DIVIDE',
 		'LPARENT', 'RPARENT', 'COMA','SEMICOLOM',
 		'DOT','UPDATE']
 
-reservadas ={
-	'begin': 'BEGIN', 
-	'end': 'END',
-	'if': 'IF',
-	'then': 'THEN',
-	'while':'WHILE',
-	'do': 'DO',
-	'call': 'CALL',
-	'const': 'CONST',
-	'int': 'INT',
-	'procedure': 'PROCEDURE',
-	'out': 'OUT',
-	'in': 'IN',
-	'else': 'ELSE'
-}
+reservadas =]
+	'start': 'START', #begin 
+	'ende': 'ENDE', #end
+	'ob': 'OB', #if
+	'dann': 'DANN', #then
+	'wahrend':'WAHREND', #while
+	'machen': 'MACHEN', #do
+	'anruf': 'ANRUF', #call
+	'const': 'CONST', #const
+	'zahl': 'ZAHL', #int
+	'verfahren': 'VERFAHREN', #procedure
+	'aus': 'AUS', #out
+	'im': 'IM', #in
+	'sonst': 'SONST' #else
+]
 
-tokens = tokens+list(reservadas.values())
+tokens = tokens+reservadas]
 
 t_ignore = '\t'
 t_PLUS = r'\+'
