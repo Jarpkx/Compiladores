@@ -105,7 +105,7 @@ t_ELLIPSIS         = r'\.\.\.'
 t_ID = r'[A-Za-z_](" ")?[A-Za-z0-9_]*(\n)?'
 
 # Integer literal
-t_INTEGER = r'\d+([uU]|[lL]|[uU][lL]|[lL][uU])?'
+t_INTEGER = r'\d+([uU]|[lL]|[uU][lL]|[lL][uU]^[A-Za-z])?'
 
 # Floating literal
 t_FLOAT = r'((\d+)(\.\d+)(e(\+|-)?(\d+))? | (\d+)e(\+|-)?(\d+))([lL]|[fF])?'
