@@ -72,16 +72,13 @@ def t_error(t):
 	t.lexer.skip(1)
 	
 class Lutor:
-	def contLineas(self,fileName):
-		return len(open(fileName, 'r').readlines())
-
+	
 	def compilar(self,fileName):
 		fp=codecs.open(fileName, 'r')
 		file_text = fp.read()
 		analizador = lex.lex()
 		i=0
 		analizador.input(file_text)
-		num=self.contLineas(fileName)+1
 		print('['+'/'*i + ']',i,'%', end='\r')
 		while True:
 			tok = analizador.token()
