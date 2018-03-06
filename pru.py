@@ -1,31 +1,28 @@
-import ply.lex as lex
 import re
 import codecs
-import os
-import sys
+import ply.lex as lex
 
-tokens =[ 'ID','NUMERO','PLUS','MINUS','TIMES','DIVIDE',
-		'ODD','ASSIGN','NE','LT','LTE','GT','GTE',
-		'LPARENT', 'RPARENT', 'COMA','SEMICOLOM',
-		'DOT','UPDATE']
+#reservadas=['START','ENDE','OB','DANN','WAHREND','MACHEN','ANRUF','CONST','ZAHL','VERFAHREN','AUS','IM','SONST']
+tokens = ['ID','NUMBER','PLUS','MINUS','TIMES','DIVIDE','ODD','ASSIGN','NE','LT','LTE','GT','GTE','LPARENT','RPARENT','COMMA','SEMMICOLOM','DOT','UPDATE']
 
-reservadas =]
-	'start': 'START', #begin 
-	'ende': 'ENDE', #end
-	'ob': 'OB', #if
-	'dann': 'DANN', #then
-	'wahrend':'WAHREND', #while
-	'machen': 'MACHEN', #do
-	'anruf': 'ANRUF', #call
-	'const': 'CONST', #const
-	'zahl': 'ZAHL', #int
-	'verfahren': 'VERFAHREN', #procedure
-	'aus': 'AUS', #out
-	'im': 'IM', #in
-	'sonst': 'SONST' #else
-]
 
-tokens = tokens+reservadas]
+reservadas={'start':'START', #begin
+'ende':'ENDE', #end
+'ob':'OB', #if
+'dann':'DANN', #then
+'wahrend':'WAHREND', #while
+'machen':'MACHEN', #do
+'anruf':'ANRUF', #call
+'const':'CONST', #const
+'zahl':'ZAHL', #int
+'verfahren':'VERFAHREN', #procedure
+'aus':'AUS', #out
+'im':'IM', #in
+'sonst':'SONST' #else
+}
+#listTokens = tokens+reservadas
+tokens = tokens+list(reservadas.values())
+#listTokens = tokens+list(reservadas.values())
 
 t_ignore = '\t'
 t_PLUS = r'\+'
@@ -47,20 +44,29 @@ t_DOT = r'\.'
 t_UPDATE = r':='
 
 def t_ID(t):
-	r'[a-zA-Z_][a-zA-Z0-9]*'
-	if t.value.upper() in reservadas():
-		t.value = t.value.upper()
-		t.type = t.value
+	r'[a-zA-Z_](" ")?[a-zA-Z0-9_]*(\n)?'
+	if t.value.upper() in tokens:
+ 		t.value = t.value.upper()
+ 		t.type = t.value
 	return t
+
 
 def t_COOMENT(t):
 	r'\#-*'
 	pass
 
+def t_ESPACE(t):
+	r'\ '
+
+def t_ENDLINE(t):
+	r'\n'
+
+
 def t_NUMBER(t):
 	r'\d+'
 	t.value = int(t.value)
 	return t
-def t_erro(t):
-	print ("caracter ilegal"'%s'"t.value[0]")
+
+def t_error(t):
+	print ("error lexico")
 	t.lexer.skip(1)
