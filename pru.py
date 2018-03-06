@@ -44,7 +44,7 @@ t_DOT = r'\.'
 t_UPDATE = r':='
 
 def t_ID(t):
-	r'[a-zA-Z_](" ")?[a-zA-Z0-9_]*(\n)?'
+	r'~[a-zA-Z_](" ")?[a-zA-Z0-9_]*(\n)?'
 	if t.value.upper() in tokens:
  		t.value = t.value.upper()
  		t.type = t.value
@@ -85,9 +85,9 @@ class Lutor:
 			if not tok:
 				break
 			else:			
-				print('\n',tok)
-				print('['+'/'*(i+1) + ']',(i*10)+10,'%', end='\r')
 				i=i+1
+				print('\n',tok)
+				print('['+'/'*i + ']',i,'%', end='\r')
 		fp.close()
 
 	
